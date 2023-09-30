@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb"; // Import ObjectId from mongodb library
 import clientPromise from "../lib/mongodb";
 import Head from "next/head";
+const uniqueId = process.env.uniqueId; // Access the unique ID from environment variables
 
 export default function User({ user }) {
   return (
@@ -33,7 +34,7 @@ export async function getStaticProps({}) {
 
     // Assuming the userId is provided as a query parameter
     // const userId = params.userId;
-    const userId = "643e704577ba2c459fdd2a8b";
+    const userId = uniqueId;
     if (!ObjectId.isValid(userId)) {
       throw new Error("Invalid ObjectId");
     }
