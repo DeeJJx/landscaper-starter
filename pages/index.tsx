@@ -28,23 +28,25 @@ export default function User({ user }: UserProps) {
   const values = Object.values(user);
   const titleText = `${user.name} Landscaping`
   return (
-    <div>
+    <>
       <Head>
         <title>{titleText}</title>
       </Head>
-      <h1>User Profile</h1>
-      <ul>
-        {values.map((value, index) => {
-          // Check if the value is not null
-          if (value !== null) {
-            return (
-              <li key={index}>{value}</li>
-            );
-          }
-          return null; // Skip null values
-        })}
-      </ul>
-    </div>
+      <div className="landing-container">
+        <h1>User Profile</h1>
+        <ul>
+          {values.map((value, index) => {
+            // Check if the value is not null
+            if (value !== null) {
+              return (
+                <li key={index}>{value}</li>
+              );
+            }
+            return null; // Skip null values
+          })}
+        </ul>
+      </div>
+    </>
   );
 }
 
@@ -53,6 +55,7 @@ type UserDB = {
   telephone: string;
   addressOne: string;
   addressTwo: string;
+  
   // Add other properties as needed
 };
 
