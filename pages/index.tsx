@@ -1,10 +1,16 @@
+'use client'
+
 import { ObjectId, WithId, Document } from "mongodb";
 import clientPromise from "../lib/mongodb";
 import Head from "next/head";
 import { useState } from "react";
-import SlickCarousel from "../components/SlickCarousel";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import  EmblaCarousel  from "../components/EmblaCarousel/EmblaCarousel";
+import { EmblaOptionsType } from 'embla-carousel'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+
 
 type UserProps = {
   user: UserDB; // Assuming userObject is the expected type
@@ -85,24 +91,60 @@ export default function User({ user }: UserProps) {
       [name]: value
     }));
   };
+
+  const OPTIONS: EmblaOptionsType = { loop: true }
+  const SLIDES = user.skillsList
+
   return (
     <>
       <Head>
-        <title>{user.name} Landscaping</title>
+        <title>{user.name}</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
       </Head>
       <div className="landing-container">
-        <h1>{user.name} Landscaping and Services</h1>
-        <ul>
-          {values.map((value, index) => {
-            // Check if the value is not null
-            if (value !== null && value !== "") {
-              return <li key={index}>{value}</li>;
-            }
-            return null; // Skip null values
-          })}
-        </ul>
+        <nav className="header-content">
+          <div className="header-left header-content-section">
+              Email: {user.email}
+          </div>
+          <div className="header-centre header-content-section">
+              {user.name} Landscaping and Services
+          </div>
+          <div className="header-right header-content-section">
+              Contact: {user.telephone}
+          </div>
+        </nav>
+        <div className="hero">
+          <div className="hero-text">
+            <h3>Landscape and Gardening Services</h3>
+            <p>Welcome to {user.name}, your go-to destination for top-notch landscaping services. With years of experience, we are dedicated to providing high-quality landscaping solutions for residential and commercial clients.
+               Our skilled team of gardeners are here to address all your landscaping needs with professionalism and efficiency.</p>
+          </div>
+          <div className="hero-image"></div>
+        </div>
+        <div className="contact-box">
+          <div className="location">
+            <div className="symbol"><FontAwesomeIcon icon={faLocationDot} /></div>
+            <div className="text"><p className="title">Area:</p><p>{user.addressOne} {user.addressTwo}</p></div>
+          </div>
+          <div className="email">
+            <div className="symbol"><FontAwesomeIcon icon={faEnvelope} /></div>
+            <div className="text"><p className="title">Email:</p><p>{user.email}</p></div>
+          </div>
+          <div className="phone">
+            <div className="symbol"><FontAwesomeIcon icon={faPhone} /></div>
+            <div className="text"><p className="title">Phone:</p><p>{user.telephone}</p></div> {/*import user phone number*/}
+          </div>
+        </div>
+        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        {user.skillsDescription && 
+        <div className="skills-description-container">
+          <div className="skills-description-text">
+            {user.skillsDescription}
+          </div>
+        </div>
+          }
         <div className="slick-carousel">
-          <SlickCarousel />
         </div>
         <div className="contact-us">
           <div className="contact-form-container">
@@ -148,6 +190,15 @@ export default function User({ user }: UserProps) {
             </form>
           </div>
         </div>
+        {/* <ul>
+          {values.map((value, index) => {
+            // Check if the value is not null
+            if (value !== null && value !== "") {
+              return <li key={index}>{value}</li>;
+            }
+            return null; // Skip null values
+          })}
+        </ul> */}
       </div>
     </>
   );
