@@ -3,6 +3,7 @@
 import { ObjectId, WithId, Document } from "mongodb";
 import clientPromise from "../lib/mongodb";
 import Head from "next/head";
+import Image from 'next/image';
 import { useState } from "react";
 import  EmblaCarousel  from "../components/EmblaCarousel/EmblaCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
@@ -10,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-
+import gardenWork from '../public/garden-work.jpg'
 
 type UserProps = {
   user: UserDB; // Assuming userObject is the expected type
@@ -120,7 +121,7 @@ export default function User({ user }: UserProps) {
             <p>Welcome to {user.name}, your go-to destination for top-notch landscaping services. With years of experience, we are dedicated to providing high-quality landscaping solutions for residential and commercial clients.
                Our skilled team of gardeners are here to address all your landscaping needs with professionalism and efficiency.</p>
           </div>
-          <div className="hero-image"></div>
+          <div className="hero-image"><Image src={gardenWork} alt='garden work'/></div>
         </div>
         <div className="contact-box">
           <div className="location">
