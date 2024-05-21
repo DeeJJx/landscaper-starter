@@ -11,6 +11,8 @@ import {
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
 import { DotButton, useDotButton } from './EmblaCarouselDotButton'
+import Image from 'next/image'
+
 
 const TWEEN_FACTOR_BASE = 0.52
 
@@ -107,10 +109,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((skill, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">{index}</div>
-            </div>
+              <div className="embla__slide__number">{skill["skill"]}</div>
+                <Image
+                  src={skill["smallImgUrl"]}
+                  width={200}
+                  height={100}
+                  alt={skill["skill"] + ' Services'}
+                />
+              </div>
           ))}
         </div>
       </div>

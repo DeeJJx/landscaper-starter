@@ -10,6 +10,7 @@ import { EmblaOptionsType } from 'embla-carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import  imgAndSkill from '../public/imgAndSkill';
 
 import gardenWork from '../public/garden-work.jpg'
 
@@ -54,6 +55,16 @@ function transformUser(userDoc: WithId<Document> | null): UserDB | null {
   };
 }
 
+interface ImgAndSkill {
+  smallImgUrl: string;
+  skill: string;
+}
+
+interface SkillAndImg {
+  skill: string;
+  smallImgUrl: string;
+}
+
 export default function User({ user }: UserProps) {
   const values = Object.values(user);
   const titleText = `${user.name} Landscaping`;
@@ -94,7 +105,19 @@ export default function User({ user }: UserProps) {
   };
 
   const OPTIONS: EmblaOptionsType = { loop: true }
-  const SLIDES = user.skillsList
+  let skillAndImg: SkillAndImg[] = [];
+  user.skillsList.forEach(skill => {
+    let match = imgAndSkill.find(item => item.skill === skill);
+    if (match) {
+      skillAndImg.push({ skill: skill, smallImgUrl: match.smallImgUrl });
+    }
+  });
+
+
+  const SLIDES = skillAndImg;
+  
+
+  // console.log(imgAndSkill, 'imgandskill')
 
   return (
     <>
