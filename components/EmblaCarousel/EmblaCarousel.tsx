@@ -115,7 +115,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 <Image
                   src={skill["smallImgUrl"]}
                   width={200}
-                  height={100}
+                  height={200}
                   alt={skill["skill"] + ' Services'}
                 />
               </div>
