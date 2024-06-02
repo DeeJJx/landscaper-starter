@@ -19,8 +19,13 @@ const TWEEN_FACTOR_BASE = 0.52
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
+interface Slide {
+  skill: string,
+  smallImgUrl: string
+}
+
 type PropType = {
-  slides: string[]
+  slides: Slide[],
   options?: EmblaOptionsType
 }
 

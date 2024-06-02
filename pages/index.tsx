@@ -29,14 +29,15 @@ function transformUser(userDoc: WithId<Document> | null): UserDB | null {
     name,
     telephone,
     addressOne,
-    addressTwo,
-    twitter,
-    facebook,
-    instagram,
-    skillsDescription,
-    skillsList,
-    intro
-  } = userDoc;
+    addressTwo = '',
+    twitter = '',
+    facebook = '',
+    instagram = '',
+    skillsDescription = '',
+    skillsList = [],
+    intro = '',
+    companyName = ''
+    } = userDoc;
 
   // Return a new object with the extracted properties
   return {
