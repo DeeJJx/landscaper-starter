@@ -365,4 +365,29 @@ body {
   .embla__slide__number {
     backface-visibility: hidden;
   }
-  
+  .embla__slide__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Grey overlay with transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    border-radius: 1.8rem;
+}
+.embla__slide__text {
+  color: white;
+  font-size: 1.5rem; /* Adjust font size as needed */
+  z-index: 3;
+}
+
+.embla__slide__content {
+  border-radius: 1.8rem;
+
+  img {
+    border-radius: 1.8rem;
+  }
+}

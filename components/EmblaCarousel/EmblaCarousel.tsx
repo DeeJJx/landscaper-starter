@@ -116,13 +116,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {slides.map((skill, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">{skill["skill"]}</div>
-                <Image
-                  src={skill["smallImgUrl"]}
-                  width={200}
-                  height={200}
-                  alt={skill["skill"] + ' Services'}
-                />
+              <div className="embla__slide__number">
+                <div className="embla__slide__content">
+                        <Image
+                            src={skill["smallImgUrl"]}
+                            layout="fill"
+                            objectFit="cover"
+                            alt={skill["skill"] + ' Services'}
+                            className="embla__slide__image"
+                        />
+                        <div className="embla__slide__overlay">
+                            <div className="embla__slide__text">
+                                {skill["skill"]}
+                            </div>
+                        </div>
+                    </div>
+                </div>
               </div>
           ))}
         </div>
